@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>IssueConnectorLib</AssemblyName>
+    <RootNamespace>IssueConnectorLib</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.0.0" />
+    <PackageReference Include="MassTransit.AzureServiceBus" Version="5.0.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="WindowsAzure.ServiceBus" Version="4.2.1-preview" />
+  </ItemGroup>
+</Project>

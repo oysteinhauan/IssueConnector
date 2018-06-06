@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.0.0" />
+    <PackageReference Include="MassTransit.AzureServiceBus" Version="5.0.0" />
+    <PackageReference Include="MassTransit.Log4Net" Version="5.0.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Trimble.Diagnostics" Version="2.0.8" />
+    <PackageReference Include="Trimble.Identity" Version="1.1.18" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="JiraConsumer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IssueConnectorLib\IssueConnectorLib.csproj" />
+  </ItemGroup>
+</Project>

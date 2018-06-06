@@ -1,0 +1,158 @@
+﻿@using IssueConnectorLib.Models.ProjectMappings
+@using IssueConnectorConfig.Models.UserInfo
+
+
+@{
+    ViewData["Title"] = "Config";
+}
+<div style="margin:0 auto; text-align: center;">
+    <h2>Configuration Page</h2>
+</div>
+
+<div style="margin:0 auto; text-align: center;">
+    <h3>Project Settings</h3>
+</div>
+
+@{
+    var maps = (ProjectMappings)ViewData["ProjectMappings"];
+    var users = (List<ClientUser>)ViewData["ClientUsers"];
+}
+
+<div class="container">
+    <h3>Current project mappings:</h3>
+
+    <table class="table">
+        <tr>
+            <th>JIRA</th>
+            <th>JIRA Url</th>
+            <th>Connect Url</th>
+            <th>Connect</th>
+            <th>EasyAccess</th>
+            <th>EasyAccessUrl </th>
+        </tr>
+
+        @foreach (var map in maps.Mappings)
+        {
+            <tr>
+                <td>@map.JiraProjectKey</td>
+                <td>@map.JiraUrl</td>
+                <td>@map.TrimbleConnectProjectId</td>
+                <td>@map.TrimbleConnectUrl</td>
+                <td>@map.EasyAccessProjectId</td>
+                <td>@map.EasyAccessUrl</td>
+            </tr>
+        }
+    </table>
+
+    <h3>Add new map</h3>
+
+    <form method="post" action="addprojectmap">
+
+        <table class="table">
+            <tr>
+                <th>JIRA project key</th>
+                <th>JIRAurl</th>
+                <th>TrimbleConnect PID</th>
+                <th>TrimbleConnect url</th>
+                <th>EasyAccess PID</th>
+                <th>EasyAccess url</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="jiraProjectKey" /></td>
+                <td>
+                    <select name="jiraUrl">
+                        @foreach (var map in maps.Mappings)
+                        {
+                            <option value="@map.JiraUrl">@map.JiraUrl</option>
+                        }
+                    </select>
+                </td>
+                <td><input type="text" name="trimbleConnectPID" /></td>
+                <td>
+                    <select name="tcUrl">
+                        @foreach (var map in maps.Mappings)
+                        {
+                            <option value="@map.TrimbleConnectUrl">@map.TrimbleConnectUrl</option>
+                        }
+                    </select>
+                </td>
+                <td><input type="text" name="easyAccessPID" /></td>
+                <td>
+                    <select name="eaUrl">
+                        @foreach (var map in maps.Mappings)
+                        {
+                            <option value="@map.EasyAccessUrl">@map.EasyAccessUrl</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-primary" style="margin-left:15%;" />
+    </form>
+
+
+
+
+</div>
+
+<div style="margin:0 auto; text-align: center;">
+    <h3>User Settings</h3>
+</div>
+
+<div style="margin:0 auto; text-align: center;">
+    <p>Please fill in you username for JIRA, which can be found under profile. </p>
+    <p>
+        For Connect, find your userId by logging into trimble connect, and then go to <a href="https://app.connect.trimble.com/tc/api/2.0/users/me">https://app.connect.trimble.com/tc/api/2.0/users/me</a>.
+        The "Id" value is your userId
+    </p>
+    <p>To get the EasyAccess userId...</p>
+</div>
+
+
+<h3 style="margin:0 auto; text-align: center;">Currently registered users</h3>
+<table class="table" style="width: 70%; margin-left: 15%">
+    <tr>
+        <th>JIRA</th>
+        <th>Connect</th>
+        <th>EasyAccess</th>
+    </tr>
+
+    @foreach (var user in users)
+    {
+        <tr>
+            <td>@user.JiraUsername</td>
+            <td>@user.TrimbleConnectUsername</td>
+            <td>@user.EasyAccessUsername</td>
+        </tr>
+    }
+</table>
+
+<form method="post" action="submituser">
+
+    <table class="table" style="width:70%; margin:0 auto;">
+        <tr>
+            <th>Jira Username</th>
+            <th>TrimbleConnect Username</th>
+            <th>EasyAccess Username</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="jirauser" /></td>
+            <td><input type="text" name="tcuser" /></td>
+            <td><input type="text" name="eauser" /></td>
+        </tr>
+    </table>
+    <input type="submit" class="btn btn-primary" style="margin-left:15%;" />
+</form>
+
+<a href="update"><button class="btn btn-primary">Update DB</button></a>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
